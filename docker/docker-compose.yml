@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - file-app-1
+      - file-app-2
+      - file-app-3
+
+  file-app-1:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000"
+    volumes:
+      - ../LOCAL_PROD_DATA:/app/LOCAL_PROD_DATA
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DATA_FOLDER=/app/LOCAL_PROD_DATA
+      - INDEX_FILE_PATH=/app/LOCAL_PROD_DATA/shard_1_100_index.txt
+      - INDEX_FIRST_LINE_NUMBER=1
+      - INDEX_LAST_LINE_NUMBER=100
+      - FILE_REPOSITORY_FILE_PATH=/app/LOCAL_PROD_DATA/shard_1_100.txt
+
+  file-app-2:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000"
+    volumes:
+      - ../LOCAL_PROD_DATA:/app/LOCAL_PROD_DATA
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DATA_FOLDER=/app/LOCAL_PROD_DATA
+      - INDEX_FILE_PATH=/app/LOCAL_PROD_DATA/shard_101_200_index.txt
+      - INDEX_FIRST_LINE_NUMBER=101
+      - INDEX_LAST_LINE_NUMBER=200
+      - FILE_REPOSITORY_FILE_PATH=/app/LOCAL_PROD_DATA/shard_101_200.txt
+
+  file-app-3:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000"
+    volumes:
+      - ../LOCAL_PROD_DATA:/app/LOCAL_PROD_DATA
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DATA_FOLDER=/app/LOCAL_PROD_DATA
+      - INDEX_FILE_PATH=/app/LOCAL_PROD_DATA/shard_201_300_index.txt
+      - INDEX_FIRST_LINE_NUMBER=201
+      - INDEX_LAST_LINE_NUMBER=300
+      - FILE_REPOSITORY_FILE_PATH=/app/LOCAL_PROD_DATA/shard_201_300.txt

@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  file-app-single-instance:
+    build:
+      dockerfile: docker/Dockerfile
+      context: ..
+    ports:
+      - "8001:8000"
+    volumes:
+      - ../LOCAL_PROD_DATA:/app/LOCAL_PROD_DATA
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - INDEX_FILE_PATH=/app/LOCAL_PROD_DATA/1_100_index.txt
+      - INDEX_FIRST_LINE_NUMBER=1
+      - INDEX_LAST_LINE_NUMBER=100
+      - FILE_REPOSITORY_FILE_PATH=/app/LOCAL_PROD_DATA/1_100.txt

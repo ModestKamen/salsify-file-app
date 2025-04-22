@@ -1,0 +1,29 @@
+echo "# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Output files
+# output*.txt
+# output_*.txt
+# *_index.txt
+
+.ruff_cache/
+.pytest_cache/
+.coverage
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/" > .gitignore
