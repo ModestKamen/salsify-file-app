@@ -142,7 +142,7 @@ The service starts at `http://localhost:8001`, serving lines 1 to 100.
 
 2. **Generate Index File**:
 ```bash
-python -m commands/create_index_file LOCAL_PROD_DATA/your_data_file.txt
+python commands/create_index_file.py LOCAL_PROD_DATA/your_data_file.txt
 ```
 This creates `your_data_file.txt_index.txt`.
 
